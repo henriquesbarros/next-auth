@@ -1,8 +1,9 @@
 import { FormEvent, useContext, useState } from 'react';
-import type { NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
 
 import { AuthContext } from '../contexts/AuthContext';
 
+import { withSSRGuest } from '../utils/withSSRGuest';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
@@ -31,4 +32,8 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export const getServerSideProps = withSSRGuest(async (ctx) => {
+  return {
+    props: {}
+  }
+})
